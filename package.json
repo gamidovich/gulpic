@@ -2,11 +2,9 @@
   "name": "myconf",
   "version": "1.0.0",
   "description": "",
-  "main": "gulpfile.js",
-  "dependencies": {
-    "gulp": "^3.9.1"
-  },
+  "main": "gulpfile.js",  
   "devDependencies": {
+    "gulp": "^3.9.1",
     "bower": "^1.8.0",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
@@ -17,7 +15,7 @@
     "gulp-gh-pages": "^0.5.4",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-scss": "^1.4.0",
+    "gulp-less": "*",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-svg-sprites": "^4.1.1",
     "gulp-uglify": "^2.1.2"

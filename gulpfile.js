@@ -21,24 +21,36 @@ var pages = require('gulp-gh-pages');
         .pipe(gulp.dest("./"));
     });
 
+function done() {
+	console.log('Задача выполнена успешно!!!');	
+};
 
- gulp.task("del", function () {
+ gulp.task("del", function (done) {
+       
         return del([
         		"assets"
         	]);
 
+        done();
+
     });
 
+ gulp.task("delNM", function () {
+        return del([
+        		"node_modules, .gulp-scss-cache"
+        	]);
 
- gulp.task("copy", function() {
- 	gulp.src('blocks/**/*.{jpg, png}')
- 		.pipe(flatten({includeParents: 0}))
- 		.pipe(gulp.dest('assets/images')) 	
- 	gulp.src('blocks/**/*.{svg}')
- 		.pipe(flatten({includeParents: 0}))
- 		.pipe(gulp.dest('assets/svg'));
+    });
 
- });
+gulp.task("copy", function() {
+	gulp.src('blocks/**/*.{jpg, png}')
+		.pipe(flatten({includeParents: 0}))
+		.pipe(gulp.dest('assets/images'));	
+	gulp.src('blocks/**/*.{svg}')
+		.pipe(flatten({includeParents: 0}))
+		.pipe(gulp.dest('assets/svg'));
+});
+ 
 
  gulp.task("pages", function() {
  	gulp.src('dist/**/*')
