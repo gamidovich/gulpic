@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var style = require('gulp-less');
+var scss = require('gulp-scss');
 var flatten = require('gulp-flatten');
 var svgSprites = require('gulp-svg-sprites');
 var uglify = require('gulp-uglify');
@@ -13,13 +14,39 @@ var pages = require('gulp-gh-pages');
 
 
 
- gulp.task("style", function () {
-        return gulp.src(
-            "blocks/style.less"
-        )
-        .pipe(style())
-        .pipe(gulp.dest("css"));
-    });
+gulp.task('default', [ 'style', 'html']);
+
+
+
+gulp.task("style", function () {
+    return gulp.src(
+        "blocks/style.less"
+    )
+    .pipe(style())
+    .pipe(rename("maga.css"))
+    .pipe(gulp.dest("build/css"));
+});
+
+
+
+
+
+gulp.task("style:scss", function () {
+    return gulp.src("blocks/style.scss").pipe(scss()).pipe(gulp.dest("css")).pipe(rename("maga.css"));
+});
+
+
+
+
+gulp.task("html", function() {
+	return gulp.src("page/**.html").pipe(fileInclude()).pipe(gulp.dest("build"));
+})
+
+
+
+
+
+
 
 function done() {
 	console.log('Задача выполнена успешно!!!');	
@@ -50,10 +77,10 @@ gulp.task("delSome", function (some) {
 gulp.task("copy", function() {
 	gulp.src('blocks/**/*.{jpg, png}')
 		.pipe(flatten({includeParents: 0}))
-		.pipe(gulp.dest('assets/images'));	
+		.pipe(gulp.dest('build/assets/images'));	
 	gulp.src('blocks/**/*.{svg}')
 		.pipe(flatten({includeParents: 0}))
-		.pipe(gulp.dest('assets/svg'));
+		.pipe(gulp.dest('build/assets/svg'));
 });
 
 
